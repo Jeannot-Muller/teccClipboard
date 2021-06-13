@@ -10,6 +10,7 @@ Inherits WebSDKUIControl
 		  g.FontUnit = FontUnits.Point
 		  g.FontSize = 14
 		  
+		  
 		  If BooleanProperty("enabled") = False Then
 		    g.Transparency = 60
 		  Else
@@ -24,30 +25,30 @@ Inherits WebSDKUIControl
 	#tag Event
 		Function ExecuteEvent(name as string, parameters as JSONItem) As Boolean
 		  // Events sent with TriggerServerEvent using your controlID will end up here
-		  Try
-		    
-		    Select Case Name
-		    Case "teccClipboardClick"
-		      
-		      Try
-		        If parameters.value("target") = "INPUT" Then
-		          If Me.Enabled Then
-		            objectid = Parameters.value("ID")
-		            mvalue = Parameters.value("value")
-		            teccClipboardClick()
-		            
-		            Return True
-		          End If 
-		        End If
-		      Catch err As OutOfBoundsException
-		        
-		      End Try
-		      
-		    End Select
-		    
-		  Catch
-		    
-		  End Try
+		  'Try
+		  '
+		  'Select Case Name
+		  'Case "teccClipboardClick"
+		  '
+		  'Try
+		  'If parameters.value("target") = "INPUT" Then
+		  'If Me.Enabled Then
+		  'objectid = Parameters.value("ID")
+		  'mvalue = Parameters.value("value")
+		  'teccClipboardClick()
+		  '
+		  'Return True
+		  'End If 
+		  'End If
+		  'Catch err As OutOfBoundsException
+		  '
+		  'End Try
+		  '
+		  'End Select
+		  '
+		  'Catch
+		  '
+		  'End Try
 		End Function
 	#tag EndEvent
 
@@ -88,59 +89,9 @@ Inherits WebSDKUIControl
 		    activeColor = &c00ff00
 		  End If
 		  
-		  Var borderWidthStr As String = "--borderwidth: 2px;"
-		  Var borderStyleStr As String = "--borderwidth: 1px;"
-		  Var contentStr As String = " --left: 5px; --top: -2.5px; --content: &apos;x&apos; !important;"
-		  
-		  Select Case CheckboxBorder
-		  Case BorderDimensions.Thin
-		    borderWidthStr = "--borderwidth: 1px;"
-		  Case BorderDimensions.Medium
-		    borderWidthStr = "--borderwidth: 2px;"
-		  Case BorderDimensions.Large
-		    borderWidthStr = "--borderwidth: 4px;"
-		  End Select
-		  
-		  Select Case borderStyle
-		  Case BorderStyles.dashed
-		    borderStyleStr = "--borderstyle: dashed;"
-		  Case BorderStyles.dotted
-		    borderStyleStr = "--borderstyle: dotted;"
-		  Case BorderStyles.Double
-		    borderStyleStr = "--borderstyle: double;"
-		  Case BorderStyles.groove
-		    borderStyleStr = "--borderstyle: groove;"
-		  Case BorderStyles.inset
-		    borderStyleStr = "--borderstyle: inset;"
-		  Case BorderStyles.outset
-		    borderStyleStr = "--borderstyle: outset;"
-		  Case BorderStyles.ridge
-		    borderStyleStr = "--borderstyle: ridge;"
-		  Case BorderStyles.solid
-		    borderStyleStr = "--borderstyle: solid;"
-		  End Select
-		  
-		  Select Case Symbol
-		  Case Symbols.Arrow
-		    contentStr = " --left: 3.5px; --top: -2.5px; --content: &apos;&check;&apos; !important;"
-		  Case Symbols.Cross
-		    contentStr = " --left: 5px; --top: -2.5px; --content: &apos;x&apos; !important;"
-		  Case Symbols.Dash
-		    contentStr = " --left: 3.5px; --top: -2.5px; --content: &apos;&#8722;&apos; !important;"
-		  Case Symbols.Plus
-		    contentStr = " --left: 3.5px; --top: -2.5px; --content: &apos;&#x2b;&apos; !important;"
-		  End Select
-		  
 		  js.value("value") = value
-		  js.value("borderwidth") = borderWidthStr
-		  js.value("borderstyle") = borderStyleStr
-		  js.value("bordercolor") = " --bordercolor: #" + BorderColor.ToString.Right(6) + ";"
-		  js.value("markercolor") = " --markercolor: #" + MarkerColor.ToString.Right(6) + " !important;" 
-		  js.value("background") = " --background: #" + Background.ToString.Right(6) + " !important;" 
-		  js.value("activebackground") = " --activebackground: #" + ActiveBackground.ToString.Right(6) + " !important;" 
-		  js.value("activeborder") = " --activeborder: #" + Activeborder.ToString.Right(6) + " !important;" 
-		  js.value("content") = contentStr
-		  js.value("activeColor") = "#" + activeColor.toString.Right(6)
+		  js.value("activeColor") = "#" + ActiveColor.toString.Right(6)
+		  js.value("inactiveColor") = "#" + InactiveColor.toString.Right(6)
 		  
 		  
 		  
@@ -158,55 +109,21 @@ Inherits WebSDKUIControl
 		    Var cssStr As String
 		    Var css() As String
 		    
+		    css.Add(".teccClipboardBtn {")
+		    css.Add("background-Color: transparent;")
+		    css.Add("border: none;")
+		    css.Add("Color: blue;")
+		    css.Add("display: inline-block;")
+		    css.Add("Font-size: 20px;")
+		    css.Add("}")
+		    css.Add(".teccClipboardBtn:hover {")
+		    css.Add("Color: RoyalBlue;")
+		    css.Add("}")
 		    css.Add(".teccClipboard {")
-		    css.Add("display: inline-flex;")
+		    css.Add("display: inline-box;")
 		    css.Add("cursor: pointer;")
-		    css.Add("position: relative;")
-		    css.Add("--left: 5px;")
-		    css.Add("--top: -2.5px;")
-		    css.Add("--bordercolor: #0096ff;")
-		    css.Add("--markercolor: #0096ff;")
-		    css.Add("--background: #0096ff;")
-		    css.Add("--activebackground: #0096ff;")
-		    css.Add("--activeborder: #0096ff;")
-		    css.Add("--borderwidth: 2px;")
-		    css.Add("--borderstyle: solid;")
-		    css.Add("--content: x;")
-		    css.Add("}")
-		    css.Add(".teccClipboard > span {")
-		    css.Add("color: var(--markercolor);")
-		    css.Add("padding: 0.5rem 0.25rem;")
-		    css.Add("}")
-		    css.Add(".teccClipboard > input {")
-		    css.Add("height: 25px;")
-		    css.Add("width: 25px;")
-		    css.Add("-webkit-appearance: none;")
-		    css.Add("-moz-appearance: none;")
-		    css.Add("-o-appearance: none;")
-		    css.Add("appearance: none;")
-		    css.Add("border: var(--borderwidth) var(--borderstyle) var(--bordercolor);")
-		    css.Add("border-radius: 4px;")
-		    css.Add("outline: none;")
-		    css.Add("transition-duration: 0.3s;")
-		    css.Add("background-color: var(--background);")
-		    css.Add("cursor: pointer;")
-		    css.Add("}")
-		    css.Add(".teccClipboard > input:checked {")
-		    css.Add("border: var(--borderwidth) var(--borderstyle) var(--activeborder);")
-		    css.Add("background-color: var(--activebackground);")
-		    css.Add("}")
-		    css.Add(".teccClipboard > input:checked + span::before {")
-		    css.Add("content: var(--content);")
-		    css.Add("display: block;")
-		    css.Add("text-align: center;")
-		    css.Add("color: var(--markercolor);")
-		    css.Add("font: 30px/25px Helvetica;")
-		    css.Add("position: absolute;")
-		    css.Add("left: var(--left);")
-		    css.Add("top: var(--top);")
-		    css.Add("}")
-		    css.Add(".teccClipboard > input:active {")
-		    css.Add("border: var(--borderwidth) var(--borderstyle) var(--bordercolor);")
+		    css.Add("outline: none;}")
+		    css.Add("box-shadow: none;}")
 		    css.Add("}")
 		    
 		    cssStr = String.FromArray( css, "" )
@@ -229,6 +146,10 @@ Inherits WebSDKUIControl
 		Function SessionHead(session as WebSession) As String
 		  #Pragma unused session
 		  // Return anything that you needed added to the <head> of the web app
+		  
+		  Var fontA As String = "<link rel='stylesheet' href='https://pro.fontawesome.com/releases/v5.13.0/css/all.css'>"
+		  
+		  Return fontA
 		End Function
 	#tag EndEvent
 
@@ -259,36 +180,6 @@ Inherits WebSDKUIControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  Return mActiveBackground
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mActiveBackground = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		ActiveBackground As color
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mActiveBorder
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mActiveBorder = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		ActiveBorder As Color
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h21
-		#tag Getter
-			Get
 			  Return mactiveColor
 			End Get
 		#tag EndGetter
@@ -298,189 +189,34 @@ Inherits WebSDKUIControl
 			  updateControl
 			End Set
 		#tag EndSetter
-		Private activeColor As color
+		ActiveColor As color
 	#tag EndComputedProperty
 
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
-			  Return mBackground
+			  Return mInactiveColor
 			End Get
 		#tag EndGetter
 		#tag Setter
 			Set
-			  mBackground = value
-			  updateControl
+			  mInactiveColor = value
+			  UpdateControl
 			End Set
 		#tag EndSetter
-		Background As color
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mBorderColor
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mBorderColor = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		BorderColor As Color
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mBorderStyle
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mBorderStyle = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		BorderStyle As BorderStyles
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Note
-			updateControl
-		#tag EndNote
-		#tag Getter
-			Get
-			  Return mCheckboxBorder
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mCheckboxBorder = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		CheckboxBorder As BorderDimensions
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mInitiallyOff
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mInitiallyOff = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		InitiallyOff As boolean
+		InactiveColor As Color
 	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
 		Private Shared JSFramework As WebFile
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h21
-		#tag Getter
-			Get
-			  Return mmActiveBackground
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mmActiveBackground = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		Private mActiveBackground As color
-	#tag EndComputedProperty
-
-	#tag ComputedProperty, Flags = &h21
-		#tag Getter
-			Get
-			  Return mmActiveBorder
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mmActiveBorder = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		Private mActiveBorder As Color
-	#tag EndComputedProperty
-
 	#tag Property, Flags = &h21
 		Private mactiveColor As color = &c0000ff
 	#tag EndProperty
 
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mMarkerColor
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mMarkerColor = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		MarkerColor As Color
-	#tag EndComputedProperty
-
 	#tag Property, Flags = &h21
-		Private mBackground As color = &cFFFFFF
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mBorderColor As Color = &c0096ff
-	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h21
-		#tag Getter
-			Get
-			  Return mmBorderStyle
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mmBorderStyle = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		Private mBorderStyle As BorderStyles
-	#tag EndComputedProperty
-
-	#tag Property, Flags = &h21
-		Private mCheckboxBorder As BorderDimensions
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mInitiallyOff As boolean = false
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mmActiveBackground As color = &cFFFFFF
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mmActiveBorder As Color = &c0096ff
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mMarkerColor As Color = &c0096ff
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mmBorderStyle As BorderStyles
-	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private mSymbol As Symbols
+		Private mInactiveColor As Color = &c797979
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -489,25 +225,6 @@ Inherits WebSDKUIControl
 		#tag EndNote
 		Private mvalue As string
 	#tag EndProperty
-
-	#tag Property, Flags = &h21
-		Private objectid As string
-	#tag EndProperty
-
-	#tag ComputedProperty, Flags = &h0
-		#tag Getter
-			Get
-			  Return mSymbol
-			End Get
-		#tag EndGetter
-		#tag Setter
-			Set
-			  mSymbol = value
-			  updateControl
-			End Set
-		#tag EndSetter
-		Symbol As Symbols
-	#tag EndComputedProperty
 
 	#tag Property, Flags = &h21
 		Private Shared teccClipboardCSS As WebFile
@@ -530,7 +247,7 @@ Inherits WebSDKUIControl
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = kJSCode, Type = String, Dynamic = False, Default = \"\"use strict\";\nvar tecc;\n(function (tecc) {\n    class teccClipboard extends XojoWeb.XojoVisualControl {\n        constructor(id\x2C events) {\n            super(id\x2C events);\n        }\n        render() {\n            super.render();\n            let el \x3D this.DOMElement();\n            if (!el)\n                return;\n            this.setAttributes(el);\n            var idstr \x3D el.id + \"_teccClipboard\";\n            let btn \x3D document.createElement(\"div\");\n            var disabledStr \x3D \"\";\n            var opacityStr \x3D \"\";\n            if (!this.enabled) {\n                disabledStr \x3D \" disabled\x3D\'disabled\'\";\n                opacityStr \x3D \";opacity: 40%;cursor: not-allowed !important\";\n            }\n            var cbid \x3D \"ts\" + idstr;\n            var iChecked \x3D \"\";\n     \n            btn.innerHTML \x3D \"<div class\x3D\'scaling-svg-container\'><svg class\x3D\'scaling-svg\' viewBox\x3D\'0 0 38 38\' class\x3D\'bi bi-clipboard\' fill\x3D\" + this.activeColor + \" xmlns\x3D\'http://www.w3.org/2000/svg\'><path fill-rule\x3D\'evenodd\' d\x3D\'M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z\'></path><path fill-rule\x3D\'evenodd\' d\x3D\'M9.5 1h-3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z\'></path></svg></div>\";\n            btn.id \x3D idstr;\n            btn.addEventListener(\"click\"\x2C function (event) {\n                copyToClipboard();\n            });\n            this.replaceEveryChild(btn);\n            this.applyTooltip(el);\n            this.applyUserStyle(el);\n        }\n        updateControl(data) {\n            super.updateControl(data);\n            let js \x3D $.parseJSON(data);\n            this.refresh();\n            this.value \x3D js.value;\n            this.borderwidth \x3D js.borderwidth;\n            this.bordercolor \x3D js.bordercolor;\n            this.markercolor \x3D js.markercolor;\n            this.borderstyle \x3D js.borderstyle;\n            this.background \x3D js.background;\n            this.activebackground \x3D js.activebackground;\n            this.activeborder \x3D js.activeborder;\n            this.content \x3D js.content;\n            this.activeColor \x3D js.activeColor;\n           window.mytext \x3D this.value;\n        }\n    }\n\nfunction copyToClipboard () {\n navigator.clipboard.writeText( window.mytext);\n}\n\n\n    tecc.teccClipboard \x3D teccClipboard;\n})(tecc || (tecc \x3D {}));\n\n", Scope = Private
+	#tag Constant, Name = kJSCode, Type = String, Dynamic = False, Default = \"\"use strict\";\nvar tecc;\n(function (tecc) {\n    class teccClipboard extends XojoWeb.XojoVisualControl {\n        constructor(id\x2C events) {\n            super(id\x2C events);\n        }\n        render() {\n            super.render();\n            let el \x3D this.DOMElement();\n            if (!el)\n                return;\n            this.setAttributes(el);\n            var idstr \x3D el.id + \"_teccClipboard\";\n            let btn \x3D document.createElement(\"div\");\n            var disabledStr \x3D \"\";\n            var opacityStr \x3D \"\";\n            if (!this.enabled) {\n                disabledStr \x3D \" disabled\x3D\'disabled\'\";\n                opacityStr \x3D \";opacity: 40%;cursor: not-allowed !important\";\n            }\n            var cbid \x3D \"ts\" + idstr;\n            var iChecked \x3D \"\";\n     \n            btn.innerHTML \x3D \"<button class\x3D\'teccClipboardBtn\'><i class\x3D\'fa fa-paste\'></i></button>\";\n            btn.id \x3D idstr;\n            btn.addEventListener(\"click\"\x2C function (event) {\n                copyToClipboard();\n            });\n            this.replaceEveryChild(btn);\n            this.applyTooltip(el);\n            this.applyUserStyle(el);\n        }\n        updateControl(data) {\n            super.updateControl(data);\n            let js \x3D $.parseJSON(data);\n            this.refresh();\n            this.value \x3D js.value;\n            this.borderwidth \x3D js.borderwidth;\n            this.bordercolor \x3D js.bordercolor;\n            this.markercolor \x3D js.markercolor;\n            this.borderstyle \x3D js.borderstyle;\n            this.background \x3D js.background;\n            this.activebackground \x3D js.activebackground;\n            this.activeborder \x3D js.activeborder;\n            this.content \x3D js.content;\n            this.activeColor \x3D js.activeColor;\n           window.mytext \x3D this.value;\n        }\n    }\n\nfunction copyToClipboard () {\n navigator.clipboard.writeText( window.mytext);\n}\n\n\n    tecc.teccClipboard \x3D teccClipboard;\n})(tecc || (tecc \x3D {}));\n\n", Scope = Private
 	#tag EndConstant
 
 	#tag Constant, Name = LibraryIcon, Type = String, Dynamic = False, Default = \"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", Scope = Public
@@ -538,31 +255,6 @@ Inherits WebSDKUIControl
 
 	#tag Constant, Name = NavigatorIcon, Type = String, Dynamic = False, Default = \"iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABemlDQ1BJQ0MgUHJvZmlsZQAAKJF9kE0rRFEYx38GkZemsJCUG8NqiFETGzUzCTWLaYzytrlzzYsy43bnCtlYKFtFiY23BZ+AjYWyVkqRkp0vQGyk6zmGxkt56jnP7zznOf/O+YPLq5vmTEknZLK2FR0IaqNj41rZA6XU4KaJBt3ImYFIJIzEV/0ZL9cUqXrVrrT+nv8blVOJnAFF5cJ9hmnZwoPCLfO2qVjp1VnyKOFlxak8byiO5/noYyYWDQmfCmtGWp8SvhP2GmkrAy6l74l/m0l948zMnPH5HvWTqkR2ZFhqs2QjOaIMEERjiH5C+OmiV1Y/7fjokB12YsFWl0Oz5qI1nUrbWkCcSGhDWaPDq/k6fTKjfP3tV6E3uws9z1C8VujFN+FkFepvCz3PDrhX4Pjc1C39o1Us6Uom4fEQqseg9hIqJnLJbl/+R1VBKL13nKdWKFuHtzXHed1znLd9uSwenWXzHn1qcXADsSUIX8DWNrSJtnvyHRa/ZybVhJ7LAAAAbGVYSWZNTQAqAAAACAAEARoABQAAAAEAAAA+ARsABQAAAAEAAABGASgAAwAAAAEAAgAAh2kABAAAAAEAAABOAAAAAAAAAGAAAAABAAAAYAAAAAEAAqACAAQAAAABAAAAEKADAAQAAAABAAAAEAAAAADImMOoAAAACXBIWXMAAA7EAAAOxAGVKw4bAAABP0lEQVQ4EZWTv0sDQRCFLyKaKLaiwUZIoYVoJ9iIjf+F2CUGCUlnmmAj1mJj6VlYBCwEQbDRzlIsUgg26bQR7IKC4PeSuWO4IFkffDezs2/ndu9HLhpom1CDGRuPCj0MMbTHuWjxDZxBF0I0j+kcJmTW4hMl/1QT/+MYF227C6Mk7z3cwiy8QEFHCFUd45aZN5JF6hqiJUzHZtSRr5NFIQ20yxjy8AFlSJVtIPN0OjtIDgjrVtsnvlveD75BgcodPMNCfzaKVokty6+IbcvT4BssU92EEjzAIsQwCbrrHgzJN3hidhd+QE06sAZSFXT+IenMXpc2uCBOuTx96t6sPNtANd/kjXFDxb+kBvox5jIGNXkFbfszM5cM9aC/1CAG/Rgy6vP0KjJY8QXLtfgIDnNW2CFWQB9LiL4x6ZWe/gIdKjEjhctD+wAAAABJRU5ErkJggg\x3D\x3D", Scope = Public
 	#tag EndConstant
-
-
-	#tag Enum, Name = BorderDimensions, Type = integer, Flags = &h0
-		Thin
-		  Medium
-		Large
-	#tag EndEnum
-
-	#tag Enum, Name = BorderStyles, Type = integer, Flags = &h0
-		dashed
-		  dotted
-		  double
-		  groove
-		  inset
-		  outset
-		  ridge
-		solid
-	#tag EndEnum
-
-	#tag Enum, Name = Symbols, Type = integer, Flags = &h0
-		Arrow
-		  Cross
-		  Dash
-		Plus
-	#tag EndEnum
 
 
 	#tag ViewBehavior
@@ -697,103 +389,26 @@ Inherits WebSDKUIControl
 		#tag ViewProperty
 			Name="Visible"
 			Visible=true
-			Group="Visual Controls"
-			InitialValue="True"
+			Group="teccClipboard"
+			InitialValue=""
 			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ActiveBackground"
+			Name="ActiveColor"
 			Visible=true
-			Group="teccCheckbox"
-			InitialValue="&c000000"
+			Group="teccClipboard"
+			InitialValue="&c008f51"
 			Type="color"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="ActiveBorder"
+			Name="InactiveColor"
 			Visible=true
-			Group="teccCheckbox"
-			InitialValue="&c000000"
+			Group="teccClipboard"
+			InitialValue="&c797979"
 			Type="Color"
 			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Background"
-			Visible=true
-			Group="teccCheckbox"
-			InitialValue="&c000000"
-			Type="color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BorderColor"
-			Visible=true
-			Group="teccCheckbox"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="BorderStyle"
-			Visible=true
-			Group="teccCheckbox"
-			InitialValue=""
-			Type="BorderStyles"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - dashed"
-				"1 - dotted"
-				"2 - double"
-				"3 - groove"
-				"4 - inset"
-				"5 - outset"
-				"6 - ridge"
-				"7 - solid"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="CheckboxBorder"
-			Visible=true
-			Group="teccCheckbox"
-			InitialValue=""
-			Type="BorderDimensions"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Thin"
-				"1 - Medium"
-				"2 - Large"
-			#tag EndEnumValues
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="InitiallyOff"
-			Visible=true
-			Group="teccCheckbox"
-			InitialValue=""
-			Type="boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="MarkerColor"
-			Visible=true
-			Group="teccCheckbox"
-			InitialValue="&c000000"
-			Type="Color"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
-			Name="Symbol"
-			Visible=true
-			Group="teccCheckbox"
-			InitialValue=""
-			Type="Symbols"
-			EditorType="Enum"
-			#tag EnumValues
-				"0 - Arrow"
-				"1 - Cross"
-				"2 - Dash"
-				"3 - Plus"
-			#tag EndEnumValues
 		#tag EndViewProperty
 		#tag ViewProperty
 			Name="_mPanelIndex"
