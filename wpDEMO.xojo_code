@@ -638,10 +638,8 @@ Begin WebPage wpDEMO
       LockRight       =   False
       LockTop         =   True
       LockVertical    =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   102
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   328
       value           =   ""
@@ -748,6 +746,62 @@ Begin WebPage wpDEMO
       Width           =   100
       _mPanelIndex    =   -1
    End
+   Begin WebButton pbDeleteteccClipboard1
+      AllowAutoDisable=   False
+      Cancel          =   False
+      Caption         =   "Delete teccClipboard"
+      ControlID       =   ""
+      Default         =   False
+      Enabled         =   True
+      Height          =   38
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   508
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      PanelIndex      =   0
+      Scope           =   2
+      TabIndex        =   106
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   190
+      Visible         =   True
+      Width           =   181
+      _mPanelIndex    =   -1
+   End
+   Begin WebButton pbDeleteteccClipboard2
+      AllowAutoDisable=   False
+      Cancel          =   False
+      Caption         =   "Delete teccClipboard"
+      ControlID       =   ""
+      Default         =   False
+      Enabled         =   True
+      Height          =   38
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   508
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      PanelIndex      =   0
+      Scope           =   2
+      TabIndex        =   107
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   328
+      Visible         =   True
+      Width           =   181
+      _mPanelIndex    =   -1
+   End
 End
 #tag EndWebPage
 
@@ -797,7 +851,7 @@ End
 #tag Events teccClipboard1
 	#tag Event , Description = 4669726573207768656E2074686520636F6E74726F6C20697320636C69636B65642E2052657475726E7320746865206368616E676564207374617475732E0A737461747573203D2074686520737461747573206F662074686520636F6E74726F6C2E0A6F626A6563746964203D20746865206964206F6620746865206372656174656420444F4D20656C656D656E742E
 		Sub teccClipboardClick()
-		  
+		  messageBox("Copied to Clipboard!")
 		End Sub
 	#tag EndEvent
 #tag EndEvents
@@ -815,7 +869,21 @@ End
 #tag Events teccClipboard2
 	#tag Event , Description = 4669726573207768656E2074686520636F6E74726F6C20697320636C69636B65642E2052657475726E7320746865206368616E676564207374617475732E0A737461747573203D2074686520737461747573206F662074686520636F6E74726F6C2E0A6F626A6563746964203D20746865206964206F6620746865206372656174656420444F4D20656C656D656E742E
 		Sub teccClipboardClick()
-		  
+		  messageBox("Copied to Clipboard!")
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events pbDeleteteccClipboard1
+	#tag Event
+		Sub Pressed()
+		  teccClipboard1.value = ""
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events pbDeleteteccClipboard2
+	#tag Event
+		Sub Pressed()
+		  teccClipboard2.value = ""
 		End Sub
 	#tag EndEvent
 #tag EndEvents
