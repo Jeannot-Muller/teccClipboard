@@ -338,7 +338,7 @@ Begin WebPage wpDEMO
       Enabled         =   True
       Height          =   34
       HoverColor      =   &c0096FF00
-      InactiveColor   =   &c79797900
+      InactiveColor   =   &c92929200
       Index           =   -2147483648
       Indicator       =   0
       Left            =   135
@@ -355,7 +355,7 @@ Begin WebPage wpDEMO
       Top             =   113
       value           =   ""
       Visible         =   True
-      Width           =   100
+      Width           =   34
       _mPanelIndex    =   -1
    End
    Begin WebButton Button2

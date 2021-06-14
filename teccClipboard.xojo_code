@@ -8,7 +8,7 @@ Inherits WebSDKUIControl
 		  '// todo4
 		  g.FontName = "Helvetica"
 		  g.FontUnit = FontUnits.Point
-		  g.FontSize = 14
+		  g.FontSize = 40
 		  
 		  
 		  If BooleanProperty("enabled") = False Then
@@ -17,8 +17,14 @@ Inherits WebSDKUIControl
 		    g.Transparency = 0
 		  End If
 		  
-		  g.DrawText( "teccClipboard", 5, 20)
-		  
+		  g.FontSize = 30
+		  g.DrawingColor = ColorProperty( "InActiveColor" ) 
+		  g.DrawText( "c", 11, 25)
+		  g.FontSize = 40
+		  g.DrawingColor = ColorProperty( "ActiveColor" ) 
+		  g.DrawText( "C", 4, 32)
+		  g.DrawingColor = ColorProperty( "HoverColor" ) 
+		  g.FillOval( 0, 0, 10, 10)
 		End Sub
 	#tag EndEvent
 
