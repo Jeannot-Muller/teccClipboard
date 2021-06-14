@@ -269,32 +269,6 @@ Begin WebPage wpDEMO
       Width           =   100
       _mPanelIndex    =   -1
    End
-   Begin teccClipboard teccClipboard1
-      ActiveColor     =   &c008F5100
-      ControlID       =   ""
-      Enabled         =   True
-      Height          =   38
-      InactiveColor   =   &c79797900
-      Index           =   -2147483648
-      Indicator       =   ""
-      Left            =   135
-      LockBottom      =   False
-      LockedInPosition=   False
-      LockHorizontal  =   False
-      LockLeft        =   True
-      LockRight       =   False
-      LockTop         =   True
-      LockVertical    =   False
-      Scope           =   0
-      TabIndex        =   89
-      TabStop         =   True
-      Tooltip         =   ""
-      Top             =   113
-      value           =   ""
-      Visible         =   True
-      Width           =   100
-      _mPanelIndex    =   -1
-   End
    Begin WebTextField TextField1
       AllowAutoComplete=   False
       AllowSpellChecking=   False
@@ -318,7 +292,6 @@ Begin WebPage wpDEMO
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   90
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
@@ -337,7 +310,7 @@ Begin WebPage wpDEMO
       Height          =   38
       Hint            =   ""
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       Left            =   246
       LockBottom      =   False
       LockedInPosition=   False
@@ -347,15 +320,68 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
-      PanelIndex      =   0
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   91
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   0
       Tooltip         =   ""
       Top             =   113
+      Visible         =   True
+      Width           =   100
+      _mPanelIndex    =   -1
+   End
+   Begin teccClipboard teccClipboard1
+      ActiveColor     =   &c008E0000
+      AutoDisableButton=   True
+      ControlID       =   ""
+      Enabled         =   True
+      Height          =   34
+      HoverColor      =   &c0096FF00
+      InactiveColor   =   &c79797900
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   135
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      Scope           =   2
+      TabIndex        =   92
+      Tooltip         =   ""
+      Top             =   113
+      value           =   ""
+      Visible         =   True
+      Width           =   100
+      _mPanelIndex    =   -1
+   End
+   Begin WebButton Button2
+      AllowAutoDisable=   False
+      Cancel          =   False
+      Caption         =   "Button"
+      ControlID       =   ""
+      Default         =   False
+      Enabled         =   True
+      Height          =   38
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   27
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      PanelIndex      =   0
+      Scope           =   2
+      TabIndex        =   93
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   218
       Visible         =   True
       Width           =   100
       _mPanelIndex    =   -1
@@ -406,6 +432,13 @@ End
 	#tag Event
 		Sub Pressed()
 		  teccClipboard1.value = "Jeannot"
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events Button2
+	#tag Event
+		Sub Pressed()
+		  teccClipboard1.value = ""
 		End Sub
 	#tag EndEvent
 #tag EndEvents

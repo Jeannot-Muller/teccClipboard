@@ -85,13 +85,13 @@ Inherits WebSDKUIControl
 	#tag Event
 		Sub Serialize(js as JSONItem)
 		  // Use this method to serialize the data your control needs for initial setup
-		  If value = "Jeannot" Then
-		    activeColor = &c00ff00
-		  End If
-		  
 		  js.value("value") = value
 		  js.value("activeColor") = "#" + ActiveColor.toString.Right(6)
 		  js.value("inactiveColor") = "#" + InactiveColor.toString.Right(6)
+		  js.value("hoverColor") = "#" + HoverColor.toString.Right(6)
+		  js.value("autoDisableButton") = AutoDisableButton
+		  js.value("enabled") = me.enabled
+		  
 		  
 		  
 		  
@@ -109,15 +109,20 @@ Inherits WebSDKUIControl
 		    Var cssStr As String
 		    Var css() As String
 		    
+		    css.Add(":root {")
+		    css.Add("--teccClipboardColor: #" + InactiveColor.ToString.Right(6) + ";")
+		    css.Add("--teccClipboardHover: #" + InactiveColor.ToString.Right(6) + ";")
+		    css.Add("}")
+		    
 		    css.Add(".teccClipboardBtn {")
 		    css.Add("background-Color: transparent;")
 		    css.Add("border: none;")
-		    css.Add("Color: blue;")
+		    css.Add("Color: var(--teccClipboardColor);")
 		    css.Add("display: inline-block;")
 		    css.Add("Font-size: 20px;")
 		    css.Add("}")
 		    css.Add(".teccClipboardBtn:hover {")
-		    css.Add("Color: RoyalBlue;")
+		    css.Add("Color: var(--teccClipboardHover);")
 		    css.Add("}")
 		    css.Add(".teccClipboard {")
 		    css.Add("display: inline-box;")
@@ -195,6 +200,36 @@ Inherits WebSDKUIControl
 	#tag ComputedProperty, Flags = &h0
 		#tag Getter
 			Get
+			  Return mAutoDisableButton
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mAutoDisableButton = value
+			  UpdateControl
+			End Set
+		#tag EndSetter
+		AutoDisableButton As Boolean
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
+			  Return mHoverColor
+			End Get
+		#tag EndGetter
+		#tag Setter
+			Set
+			  mHoverColor = value
+			  UpdateControl
+			End Set
+		#tag EndSetter
+		HoverColor As Color
+	#tag EndComputedProperty
+
+	#tag ComputedProperty, Flags = &h0
+		#tag Getter
+			Get
 			  Return mInactiveColor
 			End Get
 		#tag EndGetter
@@ -216,7 +251,23 @@ Inherits WebSDKUIControl
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
+		Private mAutoDisableButton As Boolean = False
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mAutoDisableIfEmpty As boolean = false
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mHoverColor As Color = &c008f51
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
 		Private mInactiveColor As Color = &c797979
+	#tag EndProperty
+
+	#tag Property, Flags = &h21
+		Private mTransparentBackground As boolean
 	#tag EndProperty
 
 	#tag Property, Flags = &h21
@@ -247,7 +298,7 @@ Inherits WebSDKUIControl
 	#tag EndComputedProperty
 
 
-	#tag Constant, Name = kJSCode, Type = String, Dynamic = False, Default = \"\"use strict\";\nvar tecc;\n(function (tecc) {\n    class teccClipboard extends XojoWeb.XojoVisualControl {\n        constructor(id\x2C events) {\n            super(id\x2C events);\n        }\n        render() {\n            super.render();\n            let el \x3D this.DOMElement();\n            if (!el)\n                return;\n            this.setAttributes(el);\n            var idstr \x3D el.id + \"_teccClipboard\";\n            let btn \x3D document.createElement(\"div\");\n            var disabledStr \x3D \"\";\n            var opacityStr \x3D \"\";\n            if (!this.enabled) {\n                disabledStr \x3D \" disabled\x3D\'disabled\'\";\n                opacityStr \x3D \";opacity: 40%;cursor: not-allowed !important\";\n            }\n            var cbid \x3D \"ts\" + idstr;\n            var iChecked \x3D \"\";\n     \n            btn.innerHTML \x3D \"<button class\x3D\'teccClipboardBtn\'><i class\x3D\'fa fa-paste\'></i></button>\";\n            btn.id \x3D idstr;\n            btn.addEventListener(\"click\"\x2C function (event) {\n                copyToClipboard();\n            });\n            this.replaceEveryChild(btn);\n            this.applyTooltip(el);\n            this.applyUserStyle(el);\n        }\n        updateControl(data) {\n            super.updateControl(data);\n            let js \x3D $.parseJSON(data);\n            this.refresh();\n            this.value \x3D js.value;\n            this.borderwidth \x3D js.borderwidth;\n            this.bordercolor \x3D js.bordercolor;\n            this.markercolor \x3D js.markercolor;\n            this.borderstyle \x3D js.borderstyle;\n            this.background \x3D js.background;\n            this.activebackground \x3D js.activebackground;\n            this.activeborder \x3D js.activeborder;\n            this.content \x3D js.content;\n            this.activeColor \x3D js.activeColor;\n           window.mytext \x3D this.value;\n        }\n    }\n\nfunction copyToClipboard () {\n navigator.clipboard.writeText( window.mytext);\n}\n\n\n    tecc.teccClipboard \x3D teccClipboard;\n})(tecc || (tecc \x3D {}));\n\n", Scope = Private
+	#tag Constant, Name = kJSCode, Type = String, Dynamic = False, Default = \"\"use strict\";\nvar tecc;\n(function (tecc) {\n    class teccClipboard extends XojoWeb.XojoVisualControl {\n        constructor(id\x2C events) {\n            super(id\x2C events);\n        }\n        render() {\n            super.render();\n            let el \x3D this.DOMElement();\n            if (!el)\n                return;\n            this.setAttributes(el);\n            var idstr \x3D el.id + \"_teccClipboard\";\n            let btn \x3D document.createElement(\"div\");\n            let styleStr \x3D \"\";\n            let hoverColor \x3D \"\";\n            let visibilityStr \x3D \' visibility: visible;\'\n            if (this.autoDisableButton \x3D\x3D true && this.value \x3D\x3D \"\") {\n              visibilityStr \x3D \' visibility: hidden;\';\n            }\n            if (this.value \x3D\x3D \"\") {\n                styleStr \x3D \" --teccClipboardColor: \" + this.inactiveColor + \"\';\";\n                hoverColor \x3D \'--teccClipboardHover: \' + this.inactiveColor;\n            } else {\n                styleStr \x3D \" --teccClipboardColor: \" + this.activeColor +  \"\';\";\n               hoverColor \x3D \'--teccClipboardHover: \' + this.hoverColor;\n            }\n            var disabledStr \x3D \"\";\n            var opacityStr \x3D \"\";\n            if (!this.enabled) {\n                disabledStr \x3D \" disabled\";\n                opacityStr \x3D \";opacity: 40%;cursor: not-allowed !important\";\n                styleStr \x3D \" --teccClipboardColor: \" + this.inactiveColor + \"\';\"; \n                hoverColor \x3D \' --teccClipboardHover: \' + this.inactiveColor;            \n            }\n            var cbid \x3D \"ts\" + idstr;\n            var iChecked \x3D \"\"; \n            btn.innerHTML \x3D \"<button class\x3D\'teccClipboardBtn\'\" + disabledStr + \" style\x3D\'\" + visibilityStr + styleStr + opacityStr + \"\'><i class\x3D\'fa fa-paste\' ></i></button>\";\n            btn.id \x3D idstr;\n            btn.addEventListener(\"click\"\x2C function (event) {\n                copyToClipboard();\n            });\n           document.documentElement.style.cssText\x3DhoverColor;\n            this.replaceEveryChild(btn);\n            this.applyTooltip(el);\n            this.applyUserStyle(el);\n        }\n        updateControl(data) {\n            super.updateControl(data);\n            let js \x3D $.parseJSON(data);\n            this.refresh();\n            this.value \x3D js.value;\n            this.enabled \x3D js.enabled;\n            this.activeColor \x3D js.activeColor;\n            this.inactiveColor \x3D js.inactiveColor;\n            this.hoverColor \x3D js.hoverColor;     \n            this.autoDisableButton \x3D js.autoDisableButton;\n            window.mytext \x3D this.value;\n        }\n    }\n\nfunction copyToClipboard () {\n navigator.clipboard.writeText( window.mytext);\n}\n\n\n    tecc.teccClipboard \x3D teccClipboard;\n})(tecc || (tecc \x3D {}));\n\n", Scope = Private
 	#tag EndConstant
 
 	#tag Constant, Name = LibraryIcon, Type = String, Dynamic = False, Default = \"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", Scope = Public
@@ -371,6 +422,14 @@ Inherits WebSDKUIControl
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
+			Name="Visible"
+			Visible=true
+			Group="Appearance"
+			InitialValue=""
+			Type="Boolean"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
 			Name="value"
 			Visible=false
 			Group="Behavior"
@@ -387,18 +446,10 @@ Inherits WebSDKUIControl
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
-			Name="Visible"
-			Visible=true
-			Group="teccClipboard"
-			InitialValue=""
-			Type="Boolean"
-			EditorType=""
-		#tag EndViewProperty
-		#tag ViewProperty
 			Name="ActiveColor"
 			Visible=true
 			Group="teccClipboard"
-			InitialValue="&c008f51"
+			InitialValue="&c008e00"
 			Type="color"
 			EditorType=""
 		#tag EndViewProperty
@@ -408,6 +459,22 @@ Inherits WebSDKUIControl
 			Group="teccClipboard"
 			InitialValue="&c797979"
 			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="HoverColor"
+			Visible=true
+			Group="teccClipboard"
+			InitialValue="&c0096ff"
+			Type="Color"
+			EditorType=""
+		#tag EndViewProperty
+		#tag ViewProperty
+			Name="AutoDisableButton"
+			Visible=true
+			Group="teccClipboard"
+			InitialValue="False"
+			Type="Boolean"
 			EditorType=""
 		#tag EndViewProperty
 		#tag ViewProperty
