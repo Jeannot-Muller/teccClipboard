@@ -2,12 +2,8 @@
 Protected Class App
 Inherits WebApplication
 	#tag Note, Name = ChangeLog
-		2021-05-28
-		Version 3.0
-		
-		2021-05-21
-		Version 2.0
-		
+		2021-06-15
+		Version 1.0
 	#tag EndNote
 
 

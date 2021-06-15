@@ -266,7 +266,7 @@ Begin WebPage wpDEMO
       Tooltip         =   ""
       Top             =   236
       Visible         =   True
-      Width           =   100
+      Width           =   146
       _mPanelIndex    =   -1
    End
    Begin WebTextField tf1
@@ -342,7 +342,7 @@ Begin WebPage wpDEMO
       InactiveColor   =   &c92929200
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   440
+      Left            =   486
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -380,7 +380,6 @@ Begin WebPage wpDEMO
       Multiline       =   False
       Scope           =   2
       TabIndex        =   94
-      TabStop         =   True
       Text            =   "+"
       TextAlignment   =   2
       TextColor       =   &c00000000
@@ -399,7 +398,7 @@ Begin WebPage wpDEMO
       FontSize        =   0.0
       Height          =   38
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       Italic          =   False
       Left            =   284
       LockBottom      =   False
@@ -410,10 +409,8 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   95
-      TabStop         =   True
       Text            =   "="
       TextAlignment   =   2
       TextColor       =   &c00000000
@@ -444,17 +441,15 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
-      PanelIndex      =   0
       ReadOnly        =   True
       Scope           =   2
       TabIndex        =   96
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   3
       Tooltip         =   ""
       Top             =   190
       Visible         =   True
-      Width           =   100
+      Width           =   146
       _mPanelIndex    =   -1
    End
    Begin WebLabel lblStatus9
@@ -476,11 +471,9 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
-      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   97
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Showing Clipboard inactive color while still empty"
       TextAlignment   =   0
       TextColor       =   &c00539200
@@ -510,11 +503,9 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
-      PanelIndex      =   0
       Scope           =   0
       TabIndex        =   98
       TabPanelIndex   =   0
-      TabStop         =   True
       Text            =   "Activating Clipboard Button only when filled:"
       TextAlignment   =   0
       TextColor       =   &c00539200
@@ -543,14 +534,12 @@ Begin WebPage wpDEMO
       LockRight       =   False
       LockTop         =   True
       LockVertical    =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   99
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   374
       Visible         =   True
-      Width           =   100
+      Width           =   146
       _mPanelIndex    =   -1
    End
    Begin WebTextField tf4
@@ -563,7 +552,7 @@ Begin WebPage wpDEMO
       Height          =   38
       Hint            =   ""
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       Left            =   20
       LockBottom      =   False
       LockedInPosition=   False
@@ -573,11 +562,9 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
-      PanelIndex      =   0
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   100
-      TabStop         =   True
       Text            =   "40"
       TextAlignment   =   3
       Tooltip         =   ""
@@ -606,11 +593,9 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
-      PanelIndex      =   0
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   101
-      TabStop         =   True
       Text            =   "50"
       TextAlignment   =   3
       Tooltip         =   ""
@@ -620,17 +605,17 @@ Begin WebPage wpDEMO
       _mPanelIndex    =   -1
    End
    Begin teccClipboard teccClipboard2
-      ActiveColor     =   &c008E0000
+      ActiveColor     =   &c9437FF00
       AutoDisableButton=   True
       ControlID       =   ""
       Enabled         =   True
       FontawesomeIcon =   "fa fa-paste"
       Height          =   38
-      HoverColor      =   &c0096FF00
-      InactiveColor   =   &c92929200
+      HoverColor      =   &cFF2F9200
+      InactiveColor   =   &cEAEAEA00
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   440
+      Left            =   486
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -655,7 +640,7 @@ Begin WebPage wpDEMO
       FontSize        =   0.0
       Height          =   38
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       Italic          =   False
       Left            =   128
       LockBottom      =   False
@@ -666,10 +651,8 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   103
-      TabStop         =   True
       Text            =   "+"
       TextAlignment   =   2
       TextColor       =   &c00000000
@@ -688,7 +671,7 @@ Begin WebPage wpDEMO
       FontSize        =   0.0
       Height          =   38
       Index           =   -2147483648
-      indicator       =   0
+      Indicator       =   0
       Italic          =   False
       Left            =   284
       LockBottom      =   False
@@ -699,10 +682,8 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       Multiline       =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   104
-      TabStop         =   True
       Text            =   "="
       TextAlignment   =   2
       TextColor       =   &c00000000
@@ -733,17 +714,15 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
-      PanelIndex      =   0
       ReadOnly        =   True
       Scope           =   2
       TabIndex        =   105
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   3
       Tooltip         =   ""
       Top             =   328
       Visible         =   True
-      Width           =   100
+      Width           =   146
       _mPanelIndex    =   -1
    End
    Begin WebButton pbDeleteteccClipboard1
@@ -756,7 +735,7 @@ Begin WebPage wpDEMO
       Height          =   38
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   508
+      Left            =   554
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -764,10 +743,8 @@ Begin WebPage wpDEMO
       LockRight       =   False
       LockTop         =   True
       LockVertical    =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   106
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   190
       Visible         =   True
@@ -784,7 +761,66 @@ Begin WebPage wpDEMO
       Height          =   38
       Index           =   -2147483648
       Indicator       =   0
-      Left            =   508
+      Left            =   554
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      Scope           =   2
+      TabIndex        =   107
+      Tooltip         =   ""
+      Top             =   328
+      Visible         =   True
+      Width           =   181
+      _mPanelIndex    =   -1
+   End
+   Begin WebTextField tf7
+      AllowAutoComplete=   False
+      AllowSpellChecking=   False
+      Caption         =   ""
+      ControlID       =   ""
+      Enabled         =   True
+      FieldType       =   0
+      Height          =   38
+      Hint            =   ""
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   20
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      MaximumCharactersAllowed=   0
+      PanelIndex      =   0
+      ReadOnly        =   False
+      Scope           =   2
+      TabIndex        =   108
+      TabStop         =   True
+      Text            =   ""
+      TextAlignment   =   1
+      Tooltip         =   ""
+      Top             =   445
+      Visible         =   True
+      Width           =   292
+      _mPanelIndex    =   -1
+   End
+   Begin WebButton pbToClipboard
+      AllowAutoDisable=   False
+      Cancel          =   False
+      Caption         =   "toClipboard"
+      ControlID       =   ""
+      Default         =   False
+      Enabled         =   True
+      Height          =   38
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   332
       LockBottom      =   False
       LockedInPosition=   False
       LockHorizontal  =   False
@@ -794,10 +830,68 @@ Begin WebPage wpDEMO
       LockVertical    =   False
       PanelIndex      =   0
       Scope           =   2
-      TabIndex        =   107
+      TabIndex        =   109
       TabStop         =   True
       Tooltip         =   ""
-      Top             =   328
+      Top             =   445
+      Visible         =   True
+      Width           =   146
+      _mPanelIndex    =   -1
+   End
+   Begin teccClipboard teccClipboard3
+      ActiveColor     =   &c008E0000
+      AutoDisableButton=   False
+      ControlID       =   ""
+      Enabled         =   True
+      FontawesomeIcon =   "fa fa-paste"
+      Height          =   38
+      HoverColor      =   &c0096FF00
+      InactiveColor   =   &c92929200
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   486
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      PanelIndex      =   0
+      Scope           =   2
+      TabIndex        =   110
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   445
+      value           =   ""
+      Visible         =   True
+      Width           =   38
+      _mPanelIndex    =   -1
+   End
+   Begin WebButton pbDeleteteccClipboard3
+      AllowAutoDisable=   False
+      Cancel          =   False
+      Caption         =   "Delete teccClipboard"
+      ControlID       =   ""
+      Default         =   False
+      Enabled         =   True
+      Height          =   38
+      Index           =   -2147483648
+      Indicator       =   0
+      Left            =   554
+      LockBottom      =   False
+      LockedInPosition=   False
+      LockHorizontal  =   False
+      LockLeft        =   True
+      LockRight       =   False
+      LockTop         =   True
+      LockVertical    =   False
+      PanelIndex      =   0
+      Scope           =   2
+      TabIndex        =   111
+      TabStop         =   True
+      Tooltip         =   ""
+      Top             =   445
       Visible         =   True
       Width           =   181
       _mPanelIndex    =   -1
@@ -884,6 +978,22 @@ End
 	#tag Event
 		Sub Pressed()
 		  teccClipboard2.value = ""
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events pbToClipboard
+	#tag Event
+		Sub Pressed()
+		  teccClipboard3.value = tf7.Text
+		End Sub
+	#tag EndEvent
+#tag EndEvents
+#tag Events teccClipboard3
+#tag EndEvents
+#tag Events pbDeleteteccClipboard3
+	#tag Event
+		Sub Pressed()
+		  teccClipboard3.value = ""
 		End Sub
 	#tag EndEvent
 #tag EndEvents
