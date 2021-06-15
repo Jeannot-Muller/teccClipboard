@@ -28,6 +28,7 @@ Begin WebPage wpDEMO
    _ImplicitInstance=   False
    _mDesignHeight  =   0
    _mDesignWidth   =   0
+   _mName          =   ""
    _mPanelIndex    =   -1
    Begin WebLabel lblStatus4
       Bold            =   False
@@ -506,7 +507,7 @@ Begin WebPage wpDEMO
       Scope           =   0
       TabIndex        =   98
       TabPanelIndex   =   0
-      Text            =   "Activating Clipboard Button only when filled:"
+      Text            =   "Activating Clipboard Button only when filled"
       TextAlignment   =   0
       TextColor       =   &c00539200
       Tooltip         =   ""
@@ -797,11 +798,9 @@ Begin WebPage wpDEMO
       LockTop         =   True
       LockVertical    =   False
       MaximumCharactersAllowed=   0
-      PanelIndex      =   0
       ReadOnly        =   False
       Scope           =   2
       TabIndex        =   108
-      TabStop         =   True
       Text            =   ""
       TextAlignment   =   1
       Tooltip         =   ""
@@ -828,10 +827,8 @@ Begin WebPage wpDEMO
       LockRight       =   False
       LockTop         =   True
       LockVertical    =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   109
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   445
       Visible         =   True
@@ -857,10 +854,8 @@ Begin WebPage wpDEMO
       LockRight       =   False
       LockTop         =   True
       LockVertical    =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   110
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   445
       value           =   ""
@@ -886,10 +881,8 @@ Begin WebPage wpDEMO
       LockRight       =   False
       LockTop         =   True
       LockVertical    =   False
-      PanelIndex      =   0
       Scope           =   2
       TabIndex        =   111
-      TabStop         =   True
       Tooltip         =   ""
       Top             =   445
       Visible         =   True
@@ -987,8 +980,6 @@ End
 		  teccClipboard3.value = tf7.Text
 		End Sub
 	#tag EndEvent
-#tag EndEvents
-#tag Events teccClipboard3
 #tag EndEvents
 #tag Events pbDeleteteccClipboard3
 	#tag Event
